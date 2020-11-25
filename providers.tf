@@ -5,6 +5,8 @@ provider "aws" {
 
 provider "google" {
   version = "3.48.0"
+  
+  project = "tymoshenko"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
