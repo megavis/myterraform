@@ -1,4 +1,4 @@
-variables "aws_config" {
+variable "aws_config" {
   default = {
     region = ""
   }
