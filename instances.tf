@@ -1,3 +1,9 @@
+variables "aws_config" {
+  default = {
+    region = ""
+  }
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
