@@ -25,7 +25,9 @@ resource "aws_instance" "demo" {
 resource "aws_instance" "demo-iteration" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  for_each      = { "A", "B" }
+  for_each      = { instance_a = "Inst-A" 
+                    instance_b = "B" 
+  }
   
   tags = {
     Name  = "DemoIstance-Iterated-${each.value}"
