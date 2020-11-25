@@ -4,23 +4,19 @@ variable "aws_config" {
   }
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "cis_debian_9" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["CIS Debian Linux 9 Benchmark*"]
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-  owners = ["099720109477"] # Canonical
+  owners = ["679593333241"] # CIS/Debian
 }
 
 resource "aws_instance" "demo" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.cis_debian_9.id
   instance_type = "t2.micro"
 
   tags = {
@@ -29,7 +25,7 @@ resource "aws_instance" "demo" {
 }
 
 resource "aws_instance" "demo-iteration" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.cis_debian_9.id
   instance_type = "t2.micro"
   for_each      = { instance_a = "Inst-A" 
                     instance_b = "B" 
