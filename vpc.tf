@@ -1,5 +1,5 @@
-variable "gcp_config" {
-}
+#variable "gcp_config" {
+#}
 
 # VPC
 resource "google_compute_network" "vpc" {
