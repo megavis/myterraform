@@ -5,7 +5,7 @@ provider "aws" {
 
 provider "google" {
   version = "3.48.0"
-  project = var.gcp_config.project
+  project = var.gcp_config.project_id
   region  = var.gcp_config.region
   zone    = var.gcp_config.zone
 }
