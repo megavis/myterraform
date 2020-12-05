@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysite
+spec:
+  selector:
+    matchLabels:
+      app: site-backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: mysite
+        app: site-backend
+    spec:
+      volumes:
+        - name: wwwdata
+          configMap:
+            name: index-html
+        - name: nginx-config
+          configMap:
+            name: nginx-configmap
+      containers:
+        - name: nginx
+          image: nginx:1.19-alpine
+          command: ["/usr/sbin/nginx", "-g", "daemon off;"]
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: wwwdata
+              mountPath: /var/www/data/index.html
+              subPath: index.html
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: nginx.conf
+              readOnly: true
+
