@@ -12,7 +12,7 @@ variable "gke_password" {
 }
 
 variable "gke_num_nodes" {
-  default     = 1
+  default     = 6
   description = "number of gke nodes"
 }
 
@@ -22,7 +22,7 @@ resource "google_container_cluster" "primary" {
   location = var.gcp_config.region
 
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = 6
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
