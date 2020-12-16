@@ -21,6 +21,10 @@ resource "google_container_cluster" "primary" {
   name     = "${var.gcp_config.project_id}-gke"
   location = var.gcp_config.zone
 
+  lifecycle = {
+    prevent_destroy = true
+  }
+  
   remove_default_node_pool = true
   initial_node_count       = 1
 
