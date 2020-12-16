@@ -21,7 +21,7 @@ resource "google_container_cluster" "primary" {
   name     = "${var.gcp_config.project_id}-gke"
   location = var.gcp_config.zone
 
-  lifecycle = {
+  lifecycle {
     prevent_destroy = true
   }
   
